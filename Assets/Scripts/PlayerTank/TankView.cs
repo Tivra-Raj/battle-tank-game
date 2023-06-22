@@ -1,3 +1,6 @@
+using BattleTank.camera;
+using BattleTank.EnemyTank;
+using System.Collections;
 using UnityEngine;
 
 namespace BattleTank.PlayerTank
@@ -10,6 +13,8 @@ namespace BattleTank.PlayerTank
 
         private float movementInput;
         private float rotationInput;
+
+        public GameObject explosion;
 
         public TankController TankController { get; private set; }
 
@@ -46,6 +51,8 @@ namespace BattleTank.PlayerTank
             {
                 TankController.Turn(rotationInput, TankController.TankModel.RotationSpeed);
             }
+
+            
         }
 
         void Movement()
@@ -57,6 +64,26 @@ namespace BattleTank.PlayerTank
         public Rigidbody GetRigidbody()
         {
             return tankRigidbody;
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.GetComponent<EnemyTankView>() != null)
+            {
+                CameraService.Instance.DeathCameraSetup();
+
+                explosion = Instantiate(explosion, this.transform.position, Quaternion.identity);
+                StartCoroutine(PlayerTankDeath(2));
+               
+            }
+        }
+
+        private IEnumerator PlayerTankDeath(int seconds)
+        {  
+            yield return new WaitForSecondsRealtime(seconds);
+            this.gameObject.GetComponent<TankView>().enabled = false;
+            explosion.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
         }
     }
 }
