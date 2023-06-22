@@ -180,3 +180,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankType: 1
+  explosion: {fileID: 7729704849284545582, guid: e9401a2676f96bf4fbd5a385a355d1ae,
+    type: 3}

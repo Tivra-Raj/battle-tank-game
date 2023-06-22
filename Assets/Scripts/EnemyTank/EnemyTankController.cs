@@ -58,8 +58,6 @@ namespace BattleTank.EnemyTank
 
             //EnemyTankView.SetWalkPoint(walkPoint);
 
-            Debug.Log("walkpoint " + walkPoint);
-
             NavMeshHit hit;
             if (NavMesh.SamplePosition(walkPoint, out hit, 1.0f, NavMesh.AllAreas))
             {
