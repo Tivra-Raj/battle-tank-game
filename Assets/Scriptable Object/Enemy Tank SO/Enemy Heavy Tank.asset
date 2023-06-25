@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyTankType: 3
   EnemyTankName: Heavy Tank
-  WalkPointRange: 15
+  WalkPointRange: 30
   EnemyHealth: 200
   sightRange: 20
+  attackRange: 15
   GroundLayerMask:
     serializedVersion: 2
     m_Bits: 64
