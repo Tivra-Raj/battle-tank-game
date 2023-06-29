@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TankType: 2
   TankName: Green Tank
-  MovementSpeed: 5000
+  MovementSpeed: 3000
   RotationSpeed: 180
   Health: 100
   TankView: {fileID: 3439958975763871, guid: b28495956b0002945a5375e507ca472e, type: 3}
   AimPoint: {fileID: 894345716630670000, guid: b74cf3ed4e332a642a7f6d2330d588af, type: 3}
+  TravelDistance: 100

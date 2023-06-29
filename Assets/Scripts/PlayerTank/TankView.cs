@@ -14,28 +14,30 @@ namespace BattleTank.PlayerTank
         private float movementInput;
         private float rotationInput;
 
+        private Vector3 previousPosition;
+        [SerializeField] public float totalDistanceTravelled = 0;
+
         public GameObject explosion;
 
         public TankController TankController { get; private set; }
 
-        public void SetTankController(TankController tankController)
-        {
-            TankController = tankController;
-        }
+        public void SetTankController(TankController tankController) => TankController = tankController;
 
-        private void Awake()
-        {
-            tankRigidbody = GetComponent<Rigidbody>();
-        }
+        private void Awake() => tankRigidbody = GetComponent<Rigidbody>();
 
-        void Start()
-        {
-            Debug.Log("Tank view is created : " + TankController.TankView);
-        }
+        void Start() => previousPosition = this.transform.position;
 
         void Update()
         {
             Movement();
+            DistanceTravelled();
+            DistanceTravelledEventTrigger(GetTotalDistanceTravelled());
+        }
+
+        void Movement()
+        {
+            movementInput = Input.GetAxisRaw("Horizontal1");
+            rotationInput = Input.GetAxisRaw("Vertical1");
 
             if (movementInput != 0)
             {
@@ -46,25 +48,31 @@ namespace BattleTank.PlayerTank
                 tankRigidbody.velocity = Vector3.zero;
             }
 
-
             if (rotationInput != 0)
             {
                 TankController.Turn(rotationInput, TankController.TankModel.RotationSpeed);
             }
-
-            
         }
 
-        void Movement()
+        void DistanceTravelled()
         {
-            movementInput = Input.GetAxisRaw("Horizontal1");
-            rotationInput = Input.GetAxisRaw("Vertical1");
+            float distance = Vector3.Distance(this.transform.position, previousPosition);
+            totalDistanceTravelled += distance;
+            previousPosition = this.transform.position;
         }
 
-        public Rigidbody GetRigidbody()
+        public float GetTotalDistanceTravelled() => totalDistanceTravelled;
+
+        public void DistanceTravelledEventTrigger(float distanceTravelled)
         {
-            return tankRigidbody;
+            if (distanceTravelled == 100f || distanceTravelled == 500f || distanceTravelled == 1000f)
+            {
+                Debug.Log("Distanced travelled = " + distanceTravelled);
+                EventService.Instance.OnDistanceTravelledEvent.InvokeEvent(distanceTravelled);
+            }
         }
+
+        public Rigidbody GetRigidbody() => tankRigidbody;
 
         private void OnCollisionEnter(Collision collision)
         {

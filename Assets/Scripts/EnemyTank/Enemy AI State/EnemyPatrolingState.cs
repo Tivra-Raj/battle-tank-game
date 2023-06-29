@@ -63,8 +63,6 @@ namespace BattleTank.EnemyTank.Enemy_AI_State
             {
                 walkPointSet = false;
             }
-
-            Debug.Log("walk point set status = " + walkPointSet);
         }
 
         private Vector3 SearchRandomWalkPoint()
@@ -80,7 +78,6 @@ namespace BattleTank.EnemyTank.Enemy_AI_State
             {
                 walkPointSet = true;
             }
-            Debug.Log(" Enemy tank patroling");
             return hit.position;
         }
     }
