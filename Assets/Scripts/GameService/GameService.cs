@@ -1,11 +1,12 @@
-﻿using BattleTank.EnemyTank;
+﻿using BattleTank.Achievement;
+using BattleTank.EnemyTank;
 using BattleTank.PlayerTank;
 using System.Collections;
 using UnityEngine;
 
-namespace BattleTank.GameManager
+namespace BattleTank.GameService
 {
-    public class GameManager : MonoSingletonGeneric<GameManager>
+    public class GameService : MonoSingletonGeneric<GameService>
     {
         public GameObject GameOver;
         public GameObject Audio;

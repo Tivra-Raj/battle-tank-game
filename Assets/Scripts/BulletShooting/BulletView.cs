@@ -64,7 +64,7 @@ namespace BattleTank.BulletShooting
         
             if(allowInvoke)
             {
-                Invoke("ResetShot", TimeBetweenShooting);
+                Invoke(nameof(ResetShot), TimeBetweenShooting);
                 allowInvoke = false;
             }
         }

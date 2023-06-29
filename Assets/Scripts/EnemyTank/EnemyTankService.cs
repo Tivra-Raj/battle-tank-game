@@ -21,8 +21,6 @@ namespace BattleTank.EnemyTank
             int pickRandomTank = Random.Range(0, ConfigEnemyTank.Length);
             EnemyTankScriptableObject enemyTankScriptableObject = ConfigEnemyTank[pickRandomTank];
 
-            //PlayerTransform = TankService.Instance.TankController.TankView.transform;
-
             EnemyTankModel enemyTankModel = new EnemyTankModel(enemyTankScriptableObject);
             EnemyTankController = new EnemyTankController(enemyTankModel, enemyTankScriptableObject.EnemyTankView);
 
