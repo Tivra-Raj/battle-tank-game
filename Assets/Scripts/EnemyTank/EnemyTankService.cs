@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BattleTank.Utilities;
+using UnityEngine;
 
 namespace BattleTank.EnemyTank
 {
@@ -6,13 +7,12 @@ namespace BattleTank.EnemyTank
     {
 
         public EnemyTankScriptableObject[] ConfigEnemyTank;
-
         public EnemyTankController EnemyTankController { get; private set; }
-
-        public Transform PlayerTransform { get; private set; }
+        private EnemyPool enemyPool;
 
         void Start()
         {
+            enemyPool = GetComponent<EnemyPool>();
             CreateNewTank();
         }
 
@@ -22,7 +22,7 @@ namespace BattleTank.EnemyTank
             EnemyTankScriptableObject enemyTankScriptableObject = ConfigEnemyTank[pickRandomTank];
 
             EnemyTankModel enemyTankModel = new EnemyTankModel(enemyTankScriptableObject);
-            EnemyTankController = new EnemyTankController(enemyTankModel, enemyTankScriptableObject.EnemyTankView);
+            EnemyTankController = enemyPool.GetEnemyTank(enemyTankModel, enemyTankScriptableObject.EnemyTankView);
 
             return EnemyTankController;
         }
