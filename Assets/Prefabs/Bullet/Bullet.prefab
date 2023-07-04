@@ -64,6 +64,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: -5642747192679110961}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 9ed1e8a25f964bd4298944675e425a0d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5334169628593357535}
   m_SourcePrefab: {fileID: 100100000, guid: 9ed1e8a25f964bd4298944675e425a0d, type: 3}
 --- !u!1 &4195827971945853596 stripped
 GameObject:
@@ -98,3 +102,24 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &-5334169628593357535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4195827971945853596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5808e04b5c858045bc90d96fa63ca4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullet: {fileID: 0}
+  ShootForce: 0
+  TimeBetweenShooting: 0
+  TimeBetweenShots: 0
+  Shooting: 0
+  ReadyToShoot: 0
+  fpscam: {fileID: 0}
+  attackPoint: {fileID: 0}
+  allowInvoke: 1

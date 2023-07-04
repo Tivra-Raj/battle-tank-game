@@ -19,7 +19,8 @@ namespace BattleTank.Achievement
             HideInstructionPopup();
             EventService.Instance.OnDistanceTravelledEvent.AddListener(ShowDistanceTravelledInstructions);
         }
-        private void OnDestroy()
+
+        private void OnDisable()
         {
             EventService.Instance.OnDistanceTravelledEvent.RemoveListener(ShowDistanceTravelledInstructions);
         }
@@ -68,8 +69,8 @@ namespace BattleTank.Achievement
         {
             if (coroutine != null)
             {
-                coroutine = null;
                 StopCoroutine(coroutine);
+                coroutine = null;
             }
         }
     }

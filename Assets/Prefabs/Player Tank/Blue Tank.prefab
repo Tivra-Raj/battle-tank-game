@@ -200,7 +200,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tankType: 3
   totalDistanceTravelled: 0
-  explosion: {fileID: 7729704849284545582, guid: e9401a2676f96bf4fbd5a385a355d1ae,
+  turetTransform: {fileID: 8355816342585174749}
+  explosion: {fileID: 8183520787775875698, guid: e9401a2676f96bf4fbd5a385a355d1ae,
     type: 3}
 --- !u!4 &6491228846701735180 stripped
 Transform:

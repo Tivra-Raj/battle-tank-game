@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
       propertyPath: m_LocalScale.x
@@ -135,6 +135,30 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6927925975612658739}
+    - targetCorrespondingSourceObject: {fileID: 100112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4723576423347933116}
+    - targetCorrespondingSourceObject: {fileID: 100112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2292196849353744040}
+    - targetCorrespondingSourceObject: {fileID: 100112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8273451983998149490}
+    - targetCorrespondingSourceObject: {fileID: 100112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1844356279210671908}
+    - targetCorrespondingSourceObject: {fileID: 100112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3902914622709676089}
+    - targetCorrespondingSourceObject: {fileID: 100112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4793875675386020337}
   m_SourcePrefab: {fileID: 100100000, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
 --- !u!1 &6491228846701637868 stripped
 GameObject:
@@ -190,6 +214,110 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.753875, y: 1.9517685, z: 2.3946695}
   m_Center: {x: 0.00000011920929, y: 0.91878563, z: -0.056540728}
+--- !u!195 &4723576423347933116
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491228846701637868}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1.35
+  m_Speed: 7
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 180
+  m_StoppingDistance: 10
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.9
+  m_BaseOffset: 0
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &-2292196849353744040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491228846701637868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3217ae72d7a64bb43af5a0df906be8d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPatrolingState: {fileID: 8273451983998149490}
+  enemyChasingState: {fileID: -1844356279210671908}
+  enemyAttackingState: {fileID: 3902914622709676089}
+  enemyDeadState: {fileID: 4793875675386020337}
+--- !u!114 &8273451983998149490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491228846701637868}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc53ed6d9cf356c40ac6414252184950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTankView: {fileID: 0}
+  playerInSightRange: 0
+  playerInAttackRange: 0
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointSet: 0
+  waitTime: 0
+  startWaitTime: 2
+--- !u!114 &-1844356279210671908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491228846701637868}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 738c9608ec2238646848ef4956db0e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTankView: {fileID: 0}
+  playerInSightRange: 0
+  playerInAttackRange: 0
+--- !u!114 &3902914622709676089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491228846701637868}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4910d0dbb962b864dadeb9cf243b4bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTankView: {fileID: 0}
+  playerInSightRange: 0
+  playerInAttackRange: 0
+--- !u!114 &4793875675386020337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491228846701637868}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf69a1cd61870146a6b61f7858212c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTankView: {fileID: 0}
+  playerInSightRange: 0
+  playerInAttackRange: 0
+  explosion: {fileID: 7729704849284545582, guid: e9401a2676f96bf4fbd5a385a355d1ae,
+    type: 3}
 --- !u!4 &6491228846701735180 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd,

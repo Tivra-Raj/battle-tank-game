@@ -8,6 +8,8 @@ namespace BattleTank.EnemyTank
         public float WalkPointRange;
         public float sightRange;
         public float attackRange;
+        public int damageToInflict;
+        public int scoreToGrant;
         public LayerMask GroundLayerMask;
         public LayerMask PlayerLayerMask;
         public EnemyTankType EnemyTankType;
@@ -26,6 +28,8 @@ namespace BattleTank.EnemyTank
             WalkPointRange = enemyTankScriptableObject.WalkPointRange;
             sightRange = enemyTankScriptableObject.sightRange;
             attackRange = enemyTankScriptableObject.attackRange;
+            damageToInflict = enemyTankScriptableObject.damageToInflict;
+            scoreToGrant = enemyTankScriptableObject.scoreToGrant;
             GroundLayerMask = enemyTankScriptableObject.GroundLayerMask;
             PlayerLayerMask = enemyTankScriptableObject.PlayerLayerMask;
         }

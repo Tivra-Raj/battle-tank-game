@@ -11,6 +11,8 @@ namespace BattleTank.EnemyTank
         public int EnemyHealth;
         public float sightRange;
         public float attackRange;
+        public int damageToInflict;
+        public int scoreToGrant;
         public LayerMask GroundLayerMask;
         public LayerMask PlayerLayerMask;
         public EnemyTankView EnemyTankView;

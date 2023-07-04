@@ -1,3 +1,4 @@
+using BattleTank.BulletShooting;
 using BattleTank.Utilities;
 using UnityEngine;
 
@@ -6,7 +7,8 @@ namespace BattleTank.PlayerTank
     public class TankService : MonoSingletonGeneric<TankService>
     {
         public TankScriptableObject[] ConfigTank;
-
+        public BulletScriptableObject bulletScriptableObject;
+        private BulletPool bulletPool;
         public TankController TankController { get; private set; }
 
         void Start()
@@ -20,10 +22,12 @@ namespace BattleTank.PlayerTank
             TankScriptableObject tankScriptableObject = ConfigTank[pickRandomTank];
 
             TankModel tankModel = new TankModel(tankScriptableObject);
-            TankController = new TankController(tankModel, tankScriptableObject.TankView);
+            TankController = new TankController(tankModel, tankScriptableObject.TankView, bulletPool);
 
             Debug.Log(" Tank controller is created " + TankController);
             return TankController;
         }
+
+        public void ReturnBulletToPool(BulletController bulletToReturn) => bulletPool.ReturnItem(bulletToReturn);
     }
 }
