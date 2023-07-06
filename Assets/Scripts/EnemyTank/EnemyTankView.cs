@@ -33,8 +33,6 @@ namespace BattleTank.EnemyTank
             ChangeEnemyState(enemyPatrolingState);
         }
 
-        private void Update() {}
-
         public NavMeshAgent GetNavMeshAgent()
         {
             return NavMeshAgent;

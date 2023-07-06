@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3888550e6f1a274ba3a2b73ec604ec4, type: 3}
   m_Name: Travelling-Achievement
   m_EditorClassIdentifier: 
-  achievementType: 1
-  Instruction: ' Journeyman I - Travel for 100 meter'
+  Instruction: ' Journeyman I - Travel for '
   DisplayDuration: 5
   WaitToTriggerDuration: 0

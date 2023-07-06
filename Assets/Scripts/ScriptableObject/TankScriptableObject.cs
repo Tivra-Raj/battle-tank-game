@@ -1,3 +1,4 @@
+using BattleTank.BulletShooting;
 using UnityEngine;
 
 namespace BattleTank.PlayerTank
@@ -11,6 +12,6 @@ namespace BattleTank.PlayerTank
         public float RotationSpeed;
         public int Health;
         public TankView TankView;
-        public GameObject AimPoint;
+        public BulletScriptableObject BulletType;
     }
 }

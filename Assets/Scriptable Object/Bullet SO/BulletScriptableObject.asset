@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletType: 2
   BulletName: Standard Bullet
-  BulletView: {fileID: 4278235952923373825, guid: faeed1832b2a059429fd9e3fbcf32f33,
+  damage: 50
+  speed: 100
+  BulletView: {fileID: -5334169628593357535, guid: faeed1832b2a059429fd9e3fbcf32f33,
     type: 3}

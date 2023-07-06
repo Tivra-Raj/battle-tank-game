@@ -1,23 +1,24 @@
 using BattleTank.camera;
 using BattleTank.EnemyTank;
+using BattleTank.Interface;
 using System.Collections;
 using UnityEngine;
 
 namespace BattleTank.PlayerTank
 {
     [RequireComponent (typeof(Rigidbody))]
-    public class TankView : MonoBehaviour
+    public class TankView : MonoBehaviour, IDamagable
     {
-        Rigidbody tankRigidbody;
+        private Rigidbody tankRigidbody;
         public TankType tankType;
 
-        private float movementInput;
-        private float rotationInput;
-
         private Vector3 previousPosition;
-        [SerializeField] public float totalDistanceTravelled = 0;
+        public float totalDistanceTravelled = 0;
 
-        public GameObject explosion;
+        [SerializeField] public Transform turetTransform;
+        public ParticleSystem explosion;
+
+        private Coroutine playerTankDeath;
 
         public TankController TankController { get; private set; }
 
@@ -29,30 +30,14 @@ namespace BattleTank.PlayerTank
 
         void Update()
         {
-            Movement();
+            TankController.HadleTankInput();
             DistanceTravelled();
             DistanceTravelledEventTrigger(GetTotalDistanceTravelled());
         }
 
-        void Movement()
-        {
-            movementInput = Input.GetAxisRaw("Horizontal1");
-            rotationInput = Input.GetAxisRaw("Vertical1");
+        public Rigidbody GetRigidbody() => tankRigidbody;
 
-            if (movementInput != 0)
-            {
-                TankController.Move(movementInput, TankController.TankModel.MovementSpeed);
-            }
-            else
-            {
-                tankRigidbody.velocity = Vector3.zero;
-            }
-
-            if (rotationInput != 0)
-            {
-                TankController.Turn(rotationInput, TankController.TankModel.RotationSpeed);
-            }
-        }
+        public void TakeDamage(int damageToTake) => TankController.TakeDamage(damageToTake);
 
         void DistanceTravelled()
         {
@@ -65,33 +50,34 @@ namespace BattleTank.PlayerTank
 
         public void DistanceTravelledEventTrigger(float distanceTravelled)
         {
-            if (distanceTravelled == 100f || distanceTravelled == 500f || distanceTravelled == 1000f)
+            if (distanceTravelled >= 100f || distanceTravelled >= 500f || distanceTravelled >= 1000f)
             {
                 Debug.Log("Distanced travelled = " + distanceTravelled);
-                EventService.Instance.OnDistanceTravelledEvent.InvokeEvent(distanceTravelled);
+                EventService.Instance.OnDistanceTravelledEvent.InvokeEvent(100f);
             }
         }
-
-        public Rigidbody GetRigidbody() => tankRigidbody;
 
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.GetComponent<EnemyTankView>() != null)
             {
+                stopCoroutine(playerTankDeath);
                 CameraService.Instance.DeathCameraSetup();
 
-                explosion = Instantiate(explosion, this.transform.position, Quaternion.identity);
-                StartCoroutine(PlayerTankDeath(2));
+                explosion = Instantiate(explosion, this.transform.position, this.transform.rotation);
+                
+                playerTankDeath =  StartCoroutine(TankController.PlayerTankDeath(2));
                
             }
         }
 
-        private IEnumerator PlayerTankDeath(int seconds)
-        {  
-            yield return new WaitForSecondsRealtime(seconds);
-            this.gameObject.GetComponent<TankView>().enabled = false;
-            explosion.gameObject.SetActive(false);
-            this.gameObject.SetActive(false);
+        private void stopCoroutine(Coroutine coroutine)
+        {
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+                coroutine = null;
+            }
         }
     }
 }

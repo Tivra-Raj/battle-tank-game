@@ -7,6 +7,8 @@ namespace BattleTank.BulletShooting
     {
         public BulletType BulletType;
         public string BulletName;
+        public int damage;
+        public float speed;
         public BulletView BulletView;
     }
 }

@@ -1,4 +1,5 @@
 using BattleTank.Achievement;
+using UnityEngine;
 
 public class EventService
 {
@@ -10,6 +11,7 @@ public class EventService
             if (instance == null)
             {
                 instance = new EventService();
+                Debug.Log("Event Service is created");
             }
             return instance;
         }
@@ -20,5 +22,6 @@ public class EventService
     public EventService()
     {
         OnDistanceTravelledEvent = new EventController<float>();
+        Debug.Log("on Distance Event ");
     }
 }

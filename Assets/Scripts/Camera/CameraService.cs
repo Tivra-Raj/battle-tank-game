@@ -1,5 +1,5 @@
-﻿using BattleTank.EnemyTank;
-using BattleTank.PlayerTank;
+﻿using BattleTank.PlayerTank;
+using BattleTank.Utilities;
 using UnityEngine;
 
 namespace BattleTank.camera
