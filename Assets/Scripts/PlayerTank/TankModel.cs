@@ -1,3 +1,5 @@
+using BattleTank.BulletShooting;
+
 namespace BattleTank.PlayerTank
 {
     public class TankModel
@@ -6,6 +8,7 @@ namespace BattleTank.PlayerTank
         public float RotationSpeed;
         public float Health;
         public TankType TankType;
+        public BulletScriptableObject BulletType;
 
         public TankController TankController { get; private set; }
 
@@ -20,6 +23,7 @@ namespace BattleTank.PlayerTank
             MovementSpeed = tankScriptableObject.MovementSpeed;
             RotationSpeed = tankScriptableObject.RotationSpeed;
             Health = tankScriptableObject.Health;
+            BulletType = tankScriptableObject.BulletType;
         }
     }
 }

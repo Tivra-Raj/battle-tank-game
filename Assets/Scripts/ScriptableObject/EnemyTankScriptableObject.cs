@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BattleTank.BulletShooting;
+using UnityEngine;
 
 namespace BattleTank.EnemyTank
 {
@@ -15,6 +16,8 @@ namespace BattleTank.EnemyTank
         public int scoreToGrant;
         public LayerMask GroundLayerMask;
         public LayerMask PlayerLayerMask;
+        public BulletScriptableObject BulletType;
         public EnemyTankView EnemyTankView;
+
     }
 }

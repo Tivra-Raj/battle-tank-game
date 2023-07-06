@@ -12,9 +12,7 @@ namespace BattleTank.PlayerTank
 
         private float movementInput;
         private float rotationInput;
-        private BulletPool bulletPool;
 
-        private ShootingState currentShootingState;
         private int currentHealth;
 
         public TankModel TankModel { get; private set; }
@@ -28,15 +26,8 @@ namespace BattleTank.PlayerTank
 
             TankModel.SetTankController(this);
             TankView.SetTankController(this);
-            this.bulletPool = bulletPool;
 
-            InitializeVariables();
-        }
-
-        private void InitializeVariables()
-        {
             currentHealth = (int)TankModel.Health;
-            currentShootingState = ShootingState.NotFiring;
             GameService.GameService.Instance.GetUIService().UpdateHealthUI(currentHealth);
         }
 
@@ -84,20 +75,11 @@ namespace BattleTank.PlayerTank
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
                 FireBullet();
-            if (Input.GetKeyUp(KeyCode.Mouse0))
-                currentShootingState = ShootingState.NotFiring;
         }
 
         private void FireBullet()
         {
-            currentShootingState = ShootingState.Firing;
-            FireBulletAtPosition(TankView.turetTransform);
-        }
-
-        private void FireBulletAtPosition(Transform fireLocation)
-        {
-            //BulletController bulletToFire = bulletPool.GetBullet();
-            //bulletToFire.ConfigureBullet(fireLocation);
+            BulletService.Instance.CreateNewBullet(TankView.turetTransform.position, TankView.turetTransform.rotation, TankModel.BulletType);
         }
 
         public void TakeDamage(int damageToTake)
@@ -114,14 +96,7 @@ namespace BattleTank.PlayerTank
             yield return new WaitForSecondsRealtime(seconds);
             Object.Destroy(TankView.gameObject);
             TankView.explosion.gameObject.SetActive(false);
-            currentShootingState = ShootingState.NotFiring;
             GameService.GameService.Instance.GetUIService().EnableGameOverUI();
-        }
-
-        private enum ShootingState
-        {
-            Firing,
-            NotFiring
         }
     }
 }

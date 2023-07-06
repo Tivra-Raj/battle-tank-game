@@ -26,5 +26,6 @@ MonoBehaviour:
   PlayerLayerMask:
     serializedVersion: 2
     m_Bits: 128
+  BulletType: {fileID: 11400000, guid: d0073982ee5b5594d82feda28ce0121e, type: 2}
   EnemyTankView: {fileID: -2292196849353744040, guid: a4a7168b0a72ef44bad85a086793cbd7,
     type: 3}

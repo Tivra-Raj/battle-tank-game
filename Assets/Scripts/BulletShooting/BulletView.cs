@@ -13,11 +13,10 @@ namespace BattleTank.BulletShooting
             bulletRigidbody = GetComponent<Rigidbody>();
         }
 
-        private void Update() => BulletController?.ShootBullet();
+        private void FixedUpdate() => BulletController?.ShootBullet();
 
-        private void OnTriggerEnter2D(Collider2D collision) => BulletController?.OnBulletEnteredTrigger(collision.gameObject);
+        private void OnTriggerEnter(Collider collision) => BulletController?.OnBulletEnteredTrigger(collision.gameObject);
 
         public Rigidbody GetBulletRigidbody() => bulletRigidbody;
-
     }
 }

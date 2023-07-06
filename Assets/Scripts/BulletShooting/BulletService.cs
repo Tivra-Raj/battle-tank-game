@@ -1,21 +1,16 @@
 ﻿using BattleTank.Utilities;
+using UnityEngine;
 
 namespace BattleTank.BulletShooting
 {
     public class BulletService : MonoSingletonGeneric<BulletService>
     {
-        public BulletScriptableObject ConfigBullet;
-
-        public BulletController BulletController { get; private set; }
-
-        public BulletController CreateNewBullet()
+        public BulletScriptableObject CofigBullet;
+        public void CreateNewBullet(Vector3 bulletPosition, Quaternion bulletRotation, BulletScriptableObject configBulleType)
         {
-            BulletScriptableObject bulletScriptableObject = ConfigBullet;
-
+            BulletScriptableObject bulletScriptableObject = configBulleType;
             BulletModel bulletModel = new BulletModel(bulletScriptableObject);
-            BulletController = new BulletController(bulletModel, bulletScriptableObject.BulletView);
-
-            return BulletController;
+            BulletController bulletController = new BulletController(bulletModel, bulletScriptableObject.BulletView, bulletPosition, bulletRotation);
         }
     }
 }
