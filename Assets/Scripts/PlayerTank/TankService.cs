@@ -8,7 +8,6 @@ namespace BattleTank.PlayerTank
     {
         public TankScriptableObject[] ConfigTank;
         public BulletScriptableObject bulletScriptableObject;
-        private BulletPool bulletPool;
         public TankController TankController { get; private set; }
 
         void Start()
@@ -22,12 +21,15 @@ namespace BattleTank.PlayerTank
             TankScriptableObject tankScriptableObject = ConfigTank[pickRandomTank];
 
             TankModel tankModel = new TankModel(tankScriptableObject);
-            TankController = new TankController(tankModel, tankScriptableObject.TankView, bulletPool);
+            TankController = new TankController(tankModel, tankScriptableObject.TankView);
 
             Debug.Log(" Tank controller is created " + TankController);
             return TankController;
         }
 
-        public void ReturnBulletToPool(BulletController bulletToReturn) => bulletPool.ReturnItem(bulletToReturn);
+        public TankController GetTankController()
+        {
+            return TankController;
+        }
     }
 }

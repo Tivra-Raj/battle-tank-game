@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3abd0a9f8a1b9b642aae38d8d4a08817, type: 3}
-  m_Name: BulletScriptableObject
+  m_Script: {fileID: 11500000, guid: 99d535cd752f0f7489c60bb867bc2235, type: 3}
+  m_Name: EnemiesKilledAchievementSO
   m_EditorClassIdentifier: 
-  BulletType: 2
-  BulletName: Standard Bullet
-  damage: 50
-  speed: 50
-  BulletView: {fileID: -5334169628593357535, guid: faeed1832b2a059429fd9e3fbcf32f33,
-    type: 3}
+  Levels: []

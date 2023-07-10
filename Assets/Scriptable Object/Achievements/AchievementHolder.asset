@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5dbed2274ee64749aeb1ebffe713428, type: 3}
+  m_Name: AchievementHolder
+  m_EditorClassIdentifier: 
+  BulletFiredAchievementSO: {fileID: 11400000, guid: 6859502cde9d58e4d8fe909d6f8fc0e3,
+    type: 2}
+  EnemiesKilledAchievementSO: {fileID: 11400000, guid: f7ee8d32e0b5c204680d6ded0ffbafd5,
+    type: 2}
+  DistanceTravelledAchievementSO: {fileID: 11400000, guid: 75ae1c843772eee4398ae28122499a90,
+    type: 2}
