@@ -1,4 +1,3 @@
-using BattleTank.BulletShooting;
 using BattleTank.Utilities;
 using UnityEngine;
 
@@ -7,7 +6,6 @@ namespace BattleTank.PlayerTank
     public class TankService : MonoSingletonGeneric<TankService>
     {
         public TankScriptableObject[] ConfigTank;
-        public BulletScriptableObject bulletScriptableObject;
         public TankController TankController { get; private set; }
 
         void Start()

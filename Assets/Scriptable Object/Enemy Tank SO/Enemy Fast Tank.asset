@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyTankType: 1
   EnemyTankName: 'Enemy Fast Tank '
-  WalkPointRange: 15
+  WalkPointRange: 5
   EnemyHealth: 100
   sightRange: 15
   attackRange: 10
   damageToInflict: 10
   scoreToGrant: 5
+  PatrolTime: 2
+  FireRate: 1
   GroundLayerMask:
     serializedVersion: 2
     m_Bits: 64

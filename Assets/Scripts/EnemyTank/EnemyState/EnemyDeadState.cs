@@ -1,7 +1,7 @@
 ﻿using BattleTank.PlayerTank;
 using UnityEngine;
 
-namespace BattleTank.EnemyTank.Enemy_AI_State
+namespace BattleTank.EnemyState
 {
     public class EnemyDeadState : EnemyTankState
     {
@@ -19,10 +19,12 @@ namespace BattleTank.EnemyTank.Enemy_AI_State
 
         private void Update()
         {
+            SetEnemyRange();         
+
             if (TankService.Instance.TankController.TankView.enabled == false)
             {
                 Debug.Log(" player died");
-                enemyTankView.ChangeEnemyState(enemyTankView.enemyDeadState);
+                ChangeEnemyState(enemyTankView.enemyDeadState);
             }
         }
     }

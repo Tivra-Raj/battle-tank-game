@@ -212,7 +212,7 @@ NavMeshAgent:
   m_Acceleration: 6
   avoidancePriority: 50
   m_AngularSpeed: 180
-  m_StoppingDistance: 10
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -236,6 +236,10 @@ MonoBehaviour:
   enemyChasingState: {fileID: 5958381148357084695}
   enemyAttackingState: {fileID: 529863033878831271}
   enemyDeadState: {fileID: 5842885158410594316}
+  initialState: 0
+  activeState: 0
+  enemyTankCurrentState: {fileID: 4750985204817068056}
+  turetTransform: {fileID: 6082697698968858822}
 --- !u!114 &4750985204817068056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,10 +255,6 @@ MonoBehaviour:
   enemyTankView: {fileID: 0}
   playerInSightRange: 0
   playerInAttackRange: 0
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointSet: 0
-  waitTime: 0
-  startWaitTime: 2
 --- !u!114 &5958381148357084695
 MonoBehaviour:
   m_ObjectHideFlags: 0

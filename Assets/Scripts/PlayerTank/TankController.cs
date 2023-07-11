@@ -17,6 +17,8 @@ namespace BattleTank.PlayerTank
 
         private Vector3 previousPosition;
 
+        private float canFire;
+
         public TankModel TankModel { get; private set; }
         public TankView TankView { get; private set; }
 
@@ -90,10 +92,17 @@ namespace BattleTank.PlayerTank
         }
         #endregion
 
+        #region Tank Shooting
         private void HandleShooting()
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
-                FireBullet();
+            {
+                if(canFire < Time.time)
+                {
+                    canFire = TankModel.FireRate + Time.time;
+                    FireBullet();
+                }
+            }
         }
 
         private void FireBullet()
@@ -107,6 +116,7 @@ namespace BattleTank.PlayerTank
             TankModel.BulletsFired += 1;
             AchievementService.Instance.GetAchievementController().CheckForBulletFiredAchievement();
         }
+        #endregion
 
         public void UpdateDistanceTravelledCounter()
         {
@@ -122,7 +132,7 @@ namespace BattleTank.PlayerTank
             GameService.GameService.Instance.GetUIService().UpdateHealthUI(currentHealth);
 
             if (currentHealth <= 0)
-                PlayerTankDeath(2);
+                 PlayerTankDeath(2);
         }
 
         public IEnumerator PlayerTankDeath(int seconds)

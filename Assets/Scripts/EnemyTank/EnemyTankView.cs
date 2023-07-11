@@ -1,19 +1,25 @@
-﻿using BattleTank.EnemyTank.Enemy_AI_State;
+﻿using BattleTank.EnemyState;
+using BattleTank.Interface;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace BattleTank.EnemyTank
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class EnemyTankView : MonoBehaviour
+    public class EnemyTankView : MonoBehaviour, IDamagable
     {
         private NavMeshAgent NavMeshAgent;
-        private EnemyTankState enemyTankCurrentState;
 
         [SerializeField] public EnemyPatrolingState enemyPatrolingState;
         [SerializeField] public EnemyChasingState enemyChasingState;
         [SerializeField] public EnemyAttackingState enemyAttackingState;
         [SerializeField] public EnemyDeadState enemyDeadState;
+
+        [SerializeField] private EnemyStates initialState;
+        public EnemyStates activeState;
+        public EnemyTankState enemyTankCurrentState;
+
+        [SerializeField] public Transform turetTransform;
 
         public EnemyTankController EnemyTankController { get; private set; }
 
@@ -30,7 +36,7 @@ namespace BattleTank.EnemyTank
 
         private void Start()
         {
-            ChangeEnemyState(enemyPatrolingState);
+            enemyTankCurrentState.ChangeEnemyState(enemyPatrolingState);
         }
 
         public NavMeshAgent GetNavMeshAgent()
@@ -58,17 +64,7 @@ namespace BattleTank.EnemyTank
             return EnemyTankController.EnemyTankModel.PlayerLayerMask;
         }
 
-        public void ChangeEnemyState(EnemyTankState newState)
-        {
-            if(enemyTankCurrentState != null)
-            {
-                Debug.Log("Enemy state : " + newState);
-                enemyTankCurrentState.OnStateExit();
-            }
-
-            enemyTankCurrentState = newState;
-            enemyTankCurrentState.OnStateEnter();
-        }
+        
 
         private void OnDrawGizmosSelected()
         {
@@ -78,5 +74,7 @@ namespace BattleTank.EnemyTank
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, EnemyTankController.EnemyTankModel.attackRange);
         }
+
+        public void TakeDamage(int damageToTake) => EnemyTankController.TakeDamage(damageToTake);
     }
 }

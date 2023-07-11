@@ -1,7 +1,6 @@
 using BattleTank.camera;
 using BattleTank.EnemyTank;
 using BattleTank.Interface;
-using System.Collections;
 using UnityEngine;
 
 namespace BattleTank.PlayerTank
