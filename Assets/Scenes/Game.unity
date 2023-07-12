@@ -2583,8 +2583,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6edd3c123cc693e44916062c1ddb75d4, type: 2}
   - {fileID: 11400000, guid: b7f5386979d2e974fa75cda77d9b2758, type: 2}
   - {fileID: 11400000, guid: 54a5341a71179754eae2d01eebb8b8c9, type: 2}
-  bulletScriptableObject: {fileID: 11400000, guid: d0073982ee5b5594d82feda28ce0121e,
-    type: 2}
 --- !u!4 &1684617001
 Transform:
   m_ObjectHideFlags: 0
@@ -2922,8 +2920,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 697810152}
   - {fileID: 31352505}
+  - {fileID: 697810152}
   - {fileID: 1914394174}
   m_Father: {fileID: 0}
   m_RootOrder: 7

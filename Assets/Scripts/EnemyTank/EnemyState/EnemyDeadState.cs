@@ -19,12 +19,12 @@ namespace BattleTank.EnemyState
 
         private void Update()
         {
-            SetEnemyRange();         
+            GetEnemyRange();         
 
             if (TankService.Instance.TankController.TankView.enabled == false)
             {
                 Debug.Log(" player died");
-                ChangeEnemyState(enemyTankView.enemyDeadState);
+                //ChangeEnemyState(enemyTankView.enemyDeadState);
             }
         }
     }

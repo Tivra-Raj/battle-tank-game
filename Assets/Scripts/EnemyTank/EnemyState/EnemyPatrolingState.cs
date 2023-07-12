@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace BattleTank.EnemyState
+﻿namespace BattleTank.EnemyState
 {
     public class EnemyPatrolingState : EnemyTankState
     {
@@ -8,7 +6,6 @@ namespace BattleTank.EnemyState
         {
             base.OnStateEnter();
             enemyTankView.activeState = EnemyStates.Patroling;
-            Debug.Log("Enter Patroling state");
             enemyTankView.EnemyTankController.Patroling();
         }
 
@@ -19,7 +16,7 @@ namespace BattleTank.EnemyState
 
         private void Update()
         {
-            SetEnemyRange();
+            GetEnemyRange();
 
             enemyTankView.EnemyTankController.Patroling();
 

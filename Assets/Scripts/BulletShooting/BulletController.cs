@@ -27,7 +27,7 @@ namespace BattleTank.BulletShooting
             BulletView.GetBulletRigidbody().MovePosition(shoot);
         }
 
-        public void OnBulletEnteredTrigger(GameObject collidedGameObject)
+        public void OnBulletEntered(GameObject collidedGameObject)
         {
             if (collidedGameObject.GetComponent<IDamagable>() != null)
             {

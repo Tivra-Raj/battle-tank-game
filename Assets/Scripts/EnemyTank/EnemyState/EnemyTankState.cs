@@ -3,17 +3,12 @@ using UnityEngine;
 
 namespace BattleTank.EnemyState
 {
-    [RequireComponent(typeof(EnemyTankView))]
     public class EnemyTankState : MonoBehaviour
     {
         [SerializeField] protected EnemyTankView enemyTankView;
         [SerializeField] protected bool playerInSightRange;
         [SerializeField] protected bool playerInAttackRange;
 
-        private void Awake()
-        {
-            enemyTankView = GetComponent<EnemyTankView>();
-        }
         public virtual void OnStateEnter()
         {
             this.enabled = true;
@@ -24,7 +19,7 @@ namespace BattleTank.EnemyState
             this.enabled = false;
         }
 
-        public void SetEnemyRange()
+        public void GetEnemyRange()
         {
             playerInSightRange = Physics.CheckSphere(enemyTankView.transform.position, enemyTankView.GetSightRange(), enemyTankView.GetPlayerLayerMask());
             playerInAttackRange = Physics.CheckSphere(enemyTankView.transform.position, enemyTankView.GetAttackRange(), enemyTankView.GetPlayerLayerMask());

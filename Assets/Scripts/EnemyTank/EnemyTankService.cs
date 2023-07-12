@@ -17,8 +17,9 @@ namespace BattleTank.EnemyTank
             for(int i = 0; i < 5; i++)
             {
                 SpawnEnemyTank();
-            }
+            }   
         }
+
         private void SpawnEnemyTank()
         {
             CreateNewTank(CalculateSpawnPosition());

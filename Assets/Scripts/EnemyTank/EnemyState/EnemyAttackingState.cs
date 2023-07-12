@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace BattleTank.EnemyState
+﻿namespace BattleTank.EnemyState
 {
     public class EnemyAttackingState : EnemyTankState
     {
@@ -8,7 +6,6 @@ namespace BattleTank.EnemyState
         {
             base.OnStateEnter();
             enemyTankView.activeState = EnemyStates.Attacking;
-            Debug.Log("Enter Attacking state");
             enemyTankView.EnemyTankController.Attacking();
         }
 
@@ -19,7 +16,7 @@ namespace BattleTank.EnemyState
 
         private void Update()
         {
-            SetEnemyRange();
+            GetEnemyRange();
             enemyTankView.EnemyTankController.Attacking();
 
             if (!playerInAttackRange && !playerInSightRange)

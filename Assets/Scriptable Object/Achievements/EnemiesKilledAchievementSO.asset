@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d535cd752f0f7489c60bb867bc2235, type: 3}
   m_Name: EnemiesKilledAchievementSO
   m_EditorClassIdentifier: 
-  Levels: []
+  Levels:
+  - AchievementName: Killer
+    AchievementInfo: Kill 1 Enemy
+    SelectAchievementLevel: 1
+    Requirement: 1
+  - AchievementName: Terminator
+    AchievementInfo: Kill 10 Enemy
+    SelectAchievementLevel: 2
+    Requirement: 10
+  - AchievementName: Dominator
+    AchievementInfo: Kill 50 Enemy
+    SelectAchievementLevel: 3
+    Requirement: 50

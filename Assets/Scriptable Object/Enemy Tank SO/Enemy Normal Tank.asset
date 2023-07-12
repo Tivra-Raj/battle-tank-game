@@ -20,11 +20,8 @@ MonoBehaviour:
   attackRange: 10
   damageToInflict: 30
   scoreToGrant: 30
-  PatrolTime: 2
+  PatrolWaitTime: 4
   FireRate: 1
-  GroundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
   PlayerLayerMask:
     serializedVersion: 2
     m_Bits: 128

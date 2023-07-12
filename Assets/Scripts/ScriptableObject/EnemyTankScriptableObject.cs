@@ -14,12 +14,10 @@ namespace BattleTank.EnemyTank
         public float attackRange;
         public int damageToInflict;
         public int scoreToGrant;
-        public int PatrolTime;
+        public int PatrolWaitTime;
         public int FireRate;
-        public LayerMask GroundLayerMask;
         public LayerMask PlayerLayerMask;
         public BulletScriptableObject BulletType;
         public EnemyTankView EnemyTankView;
-
     }
 }

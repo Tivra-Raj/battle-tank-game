@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using BattleTank.PlayerTank;
-
-namespace BattleTank.EnemyState
+﻿namespace BattleTank.EnemyState
 {
     public class EnemyChasingState : EnemyTankState
     {
@@ -10,7 +7,6 @@ namespace BattleTank.EnemyState
         {
             base.OnStateEnter();
             enemyTankView.EnemyTankController.Chasing();
-            Debug.Log("Enter Chashing state");
             enemyTankView.activeState = EnemyStates.Chasing;
         }
 
@@ -21,7 +17,8 @@ namespace BattleTank.EnemyState
 
         private void Update()
         {
-            SetEnemyRange();
+            GetEnemyRange();
+
             enemyTankView.EnemyTankController.Chasing();
 
             if (!playerInSightRange && !playerInAttackRange)

@@ -1,5 +1,7 @@
-﻿using BattleTank.BulletShooting;
+﻿using BattleTank.Achievement;
+using BattleTank.BulletShooting;
 using BattleTank.PlayerTank;
+using BattleTank.UI;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,12 +24,25 @@ namespace BattleTank.EnemyTank
             EnemyTankModel.SetEnemyTankController(this);
             EnemyTankView.SetEnemyTankController(this);
 
-            waitTime = EnemyTankModel.PatrolTime;
+            waitTime = EnemyTankModel.PatrolWaitTime;
+            currentHealth = (int)EnemyTankModel.EnemyHealth;
+
+            SubscribeEvents();
         }
 
         public void Configure(Vector3 setPosition)
         {
            EnemyTankView.transform.position = setPosition;   
+        }
+
+        private void SubscribeEvents()
+        {
+            EventService.Instance.OnPlayerKilledEnemiesEvent.AddListener(UpdateEnemiesKilledCounter);
+        }
+
+        private void UnSubscribeEvents()
+        {
+            EventService.Instance.OnPlayerKilledEnemiesEvent.RemoveListener(UpdateEnemiesKilledCounter);
         }
 
         #region EnemyPatrolling
@@ -36,7 +51,7 @@ namespace BattleTank.EnemyTank
             if (waitTime <= 0)
             {
                 SetPatrolingDestination();
-                waitTime = EnemyTankModel.PatrolTime;
+                waitTime = EnemyTankModel.PatrolWaitTime;
             }
             else
             {
@@ -54,10 +69,10 @@ namespace BattleTank.EnemyTank
         private Vector3 SearchRandomWalkPoint()
         {
 
-            float randomZ = Random.Range(-EnemyTankView.GetWalkPointRange(), EnemyTankView.GetWalkPointRange());
-            float randomX = Random.Range(-EnemyTankView.GetWalkPointRange(), EnemyTankView.GetWalkPointRange());
+            float randomZ = Random.Range(-EnemyTankModel.WalkPointRange, EnemyTankModel.WalkPointRange);
+            float randomX = Random.Range(-EnemyTankModel.WalkPointRange, EnemyTankModel.WalkPointRange);
 
-            Vector3 randomDirection = new Vector3(randomX, EnemyTankView.transform.position.y, randomZ);
+            Vector3 randomDirection = new Vector3(EnemyTankView.transform.position.x + randomX, EnemyTankView.transform.position.y, EnemyTankView.transform.position.z + randomZ);
 
             NavMeshHit hit;
             NavMesh.SamplePosition(randomDirection, out hit, 0.1f, NavMesh.AllAreas);
@@ -68,7 +83,6 @@ namespace BattleTank.EnemyTank
         #region EnemyChasing
         public void Chasing()
         {
-            EnemyTankView.transform.LookAt(TankService.Instance.TankController.TankView.transform.position);
             EnemyTankView.GetNavMeshAgent().SetDestination(TankService.Instance.TankController.TankView.transform.position);
             EnemyTankView.GetNavMeshAgent().stoppingDistance = EnemyTankModel.attackRange;
         }
@@ -77,7 +91,7 @@ namespace BattleTank.EnemyTank
         #region EnemyAttacking
         public void Attacking()
         {
-            EnemyTankView.transform.LookAt(TankService.Instance.TankController.TankView.transform.position);
+            EnemyTankView.transform.LookAt(TankService.Instance.TankController.TankView.transform);
             HandleShooting();
         }
 
@@ -91,27 +105,27 @@ namespace BattleTank.EnemyTank
         }
         #endregion
 
+        private void UpdateEnemiesKilledCounter()
+        {
+            TankService.Instance.TankController.TankModel.EnemiesKilled += 1;
+            AchievementService.Instance.GetAchievementController().CheckForEnemiesKilledAchievement();
+        }
+
         public void TakeDamage(int damageToTake)
         {
             currentHealth -= damageToTake;
+
             if (currentHealth <= 0)
                 DestroyEnemy();
-        }
-
-        public void OnEnemyCollided(GameObject collidedGameObject)
-        {
-            if (collidedGameObject.GetComponent<TankView>() != null)
-            {
-                TankService.Instance.TankController.TakeDamage(EnemyTankModel.damageToInflict);
-                DestroyEnemy();
-            }
         }
 
         private void DestroyEnemy()
         {
             GameService.GameService.Instance.GetUIService().IncrementScore(EnemyTankModel.scoreToGrant);
             EnemyTankView.gameObject.SetActive(false);
+            EventService.Instance.OnPlayerKilledEnemiesEvent.InvokeEvent();
             EnemyTankService.Instance.ReturnEnemyToPool(this);
+            UnSubscribeEvents();
         }
     }
 }

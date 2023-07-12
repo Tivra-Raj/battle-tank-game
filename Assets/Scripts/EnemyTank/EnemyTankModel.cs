@@ -11,9 +11,8 @@ namespace BattleTank.EnemyTank
         public float attackRange;
         public int damageToInflict;
         public int scoreToGrant;
-        public int PatrolTime;
+        public int PatrolWaitTime;
         public int FireRate;
-        public LayerMask GroundLayerMask;
         public LayerMask PlayerLayerMask;
         public EnemyTankType EnemyTankType;
         public BulletScriptableObject BulletType;
@@ -34,9 +33,8 @@ namespace BattleTank.EnemyTank
             attackRange = enemyTankScriptableObject.attackRange;
             damageToInflict = enemyTankScriptableObject.damageToInflict;
             scoreToGrant = enemyTankScriptableObject.scoreToGrant;
-            PatrolTime = enemyTankScriptableObject .PatrolTime;
+            PatrolWaitTime = enemyTankScriptableObject .PatrolWaitTime;
             FireRate = enemyTankScriptableObject .FireRate;
-            GroundLayerMask = enemyTankScriptableObject.GroundLayerMask;
             PlayerLayerMask = enemyTankScriptableObject.PlayerLayerMask;
             BulletType = enemyTankScriptableObject .BulletType;
         }
