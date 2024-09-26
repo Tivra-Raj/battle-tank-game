@@ -11,6 +11,7 @@ namespace BattleTank.PlayerTank
         public int MovementSpeed;
         public float RotationSpeed;
         public int Health;
+        public float FireRate;
         public TankView TankView;
         public BulletScriptableObject BulletType;
     }

@@ -1,5 +1,5 @@
+using BattleTank.Achievement;
 using BattleTank.BulletShooting;
-using BattleTank.GameService;
 using System.Collections;
 using UnityEngine;
 
@@ -15,20 +15,39 @@ namespace BattleTank.PlayerTank
 
         private int currentHealth;
 
+        private Vector3 previousPosition;
+
+        private float canFire;
+
         public TankModel TankModel { get; private set; }
         public TankView TankView { get; private set; }
 
-        public TankController(TankModel _tankmodel, TankView _tankview, BulletPool bulletPool)
+        public TankController(TankModel _tankmodel, TankView _tankview)
         {
             TankModel = _tankmodel;
             TankView = GameObject.Instantiate<TankView>(_tankview);
             tankRigidbody = TankView.GetRigidbody();
+            previousPosition = TankView.transform.position;
 
             TankModel.SetTankController(this);
             TankView.SetTankController(this);
 
+            SubscribeEvents();
+
             currentHealth = (int)TankModel.Health;
             GameService.GameService.Instance.GetUIService().UpdateHealthUI(currentHealth);
+        }
+
+        private void SubscribeEvents()
+        {
+            EventService.Instance.OnPlayerFiredBulletEvent.AddListener(UpdateBulletsFiredCounter);
+            EventService.Instance.OnPlayerTravelledDistanceEvent.AddListener(UpdateDistanceTravelledCounter);
+        }
+
+        private void UnSubscribeEvents()
+        {
+            EventService.Instance.OnPlayerFiredBulletEvent.RemoveListener(UpdateBulletsFiredCounter);
+            EventService.Instance.OnPlayerTravelledDistanceEvent.RemoveListener(UpdateDistanceTravelledCounter);
         }
 
         public void HadleTankInput()
@@ -56,6 +75,8 @@ namespace BattleTank.PlayerTank
             {
                 Turn(rotationInput, TankModel.RotationSpeed);
             }
+
+            EventService.Instance.OnPlayerTravelledDistanceEvent.InvokeEvent();
         }
 
         public void Move(float movementInput, float movementSpeed)
@@ -71,15 +92,38 @@ namespace BattleTank.PlayerTank
         }
         #endregion
 
+        #region Tank Shooting
         private void HandleShooting()
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
-                FireBullet();
+            {
+                if(canFire < Time.time)
+                {
+                    canFire = TankModel.FireRate + Time.time;
+                    FireBullet();
+                }
+            }
         }
 
         private void FireBullet()
         {
-            BulletService.Instance.CreateNewBullet(TankView.turetTransform.position, TankView.turetTransform.rotation, TankModel.BulletType);
+            BulletService.Instance.GetBullet(TankView.turetTransform.position, TankView.transform.rotation, TankModel.BulletType);
+            EventService.Instance.OnPlayerFiredBulletEvent.InvokeEvent();
+        }
+
+        private void UpdateBulletsFiredCounter()
+        {
+            TankModel.BulletsFired += 1;
+            AchievementService.Instance.GetAchievementController().CheckForBulletFiredAchievement();
+        }
+        #endregion
+
+        public void UpdateDistanceTravelledCounter()
+        {
+            float distance = Vector3.Distance(TankView.transform.position, previousPosition);
+            TankModel.DistanceTravelled += distance;
+            AchievementService.Instance.GetAchievementController().CheckForDistanceTravelledAchievement();
+            previousPosition = TankView.transform.position;
         }
 
         public void TakeDamage(int damageToTake)
@@ -88,14 +132,15 @@ namespace BattleTank.PlayerTank
             GameService.GameService.Instance.GetUIService().UpdateHealthUI(currentHealth);
 
             if (currentHealth <= 0)
-                PlayerTankDeath(2);
+                 PlayerTankDeath(2);
         }
 
         public IEnumerator PlayerTankDeath(int seconds)
         {
-            yield return new WaitForSecondsRealtime(seconds);
+            yield return new WaitForSeconds(seconds);
             Object.Destroy(TankView.gameObject);
             TankView.explosion.gameObject.SetActive(false);
+            UnSubscribeEvents();
             GameService.GameService.Instance.GetUIService().EnableGameOverUI();
         }
     }

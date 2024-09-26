@@ -12,9 +12,9 @@ namespace BattleTank.GameService
         public TankService Player;
         public EnemyTankService Enemy;
 
-        [SerializeField] private UIView uiService;
+        [SerializeField] private UIService uiService;
 
-        public UIView GetUIService() => uiService;
+        public UIService GetUIService() => uiService;
 
         private void Update()
         {

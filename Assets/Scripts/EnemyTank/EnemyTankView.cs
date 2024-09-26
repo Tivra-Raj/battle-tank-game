@@ -1,20 +1,26 @@
-﻿using BattleTank.EnemyTank.Enemy_AI_State;
+﻿using BattleTank.EnemyState;
+using BattleTank.Interface;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace BattleTank.EnemyTank
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class EnemyTankView : MonoBehaviour
+    public class EnemyTankView : MonoBehaviour, IDamagable
     {
+        [Header("Enemy states")]
+        public EnemyPatrolingState enemyPatrolingState;
+        public EnemyChasingState enemyChasingState;
+        public EnemyAttackingState enemyAttackingState;
+        public EnemyTankState enemyTankCurrentState;
+
+        [SerializeField] private EnemyStates initialState;
+        public EnemyStates activeState;
+
+        [Header("Shooting")]
+        public Transform turetTransform;
+
         private NavMeshAgent NavMeshAgent;
-        private EnemyTankState enemyTankCurrentState;
-
-        [SerializeField] public EnemyPatrolingState enemyPatrolingState;
-        [SerializeField] public EnemyChasingState enemyChasingState;
-        [SerializeField] public EnemyAttackingState enemyAttackingState;
-        [SerializeField] public EnemyDeadState enemyDeadState;
-
         public EnemyTankController EnemyTankController { get; private set; }
 
         public void SetEnemyTankController(EnemyTankController enemyTankController)
@@ -22,25 +28,16 @@ namespace BattleTank.EnemyTank
             EnemyTankController = enemyTankController;
         }
 
-        private void Awake()
+        private void Awake() 
         {
-            NavMeshAgent = GetComponent<NavMeshAgent>();
-           
+            NavMeshAgent = GetComponent<NavMeshAgent>();          
         }
 
-        private void Start()
-        {
-            ChangeEnemyState(enemyPatrolingState);
-        }
+        private void Start() => InitializeEnemyTankState();
 
         public NavMeshAgent GetNavMeshAgent()
         {
             return NavMeshAgent;
-        }
-
-        public float GetWalkPointRange()
-        {
-            return EnemyTankController.EnemyTankModel.WalkPointRange;
         }
 
         public float GetSightRange()
@@ -58,15 +55,23 @@ namespace BattleTank.EnemyTank
             return EnemyTankController.EnemyTankModel.PlayerLayerMask;
         }
 
-        public void ChangeEnemyState(EnemyTankState newState)
+        private void InitializeEnemyTankState()
         {
-            if(enemyTankCurrentState != null)
+            switch (initialState)
             {
-                Debug.Log("Enemy state : " + newState);
-                enemyTankCurrentState.OnStateExit();
+                case EnemyStates.Patroling:
+                    enemyTankCurrentState = enemyPatrolingState;
+                    break;
+                case EnemyStates.Chasing:
+                    enemyTankCurrentState = enemyChasingState;
+                    break;
+                case EnemyStates.Attacking:
+                    enemyTankCurrentState = enemyAttackingState;
+                    break;
+                default:
+                    enemyTankCurrentState = null;
+                    break;
             }
-
-            enemyTankCurrentState = newState;
             enemyTankCurrentState.OnStateEnter();
         }
 
@@ -78,5 +83,7 @@ namespace BattleTank.EnemyTank
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, EnemyTankController.EnemyTankModel.attackRange);
         }
+
+        public void TakeDamage(int damageToTake) => EnemyTankController.TakeDamage(damageToTake);
     }
 }

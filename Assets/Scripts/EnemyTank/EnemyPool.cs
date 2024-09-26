@@ -11,7 +11,10 @@ namespace BattleTank.EnemyTank
         {
             this.enemyPrefab = enemyPrefab;
             this.enemyData = enemyData;
-            return GetItem();
+
+            EnemyTankController enemyTankController = GetItem();
+            enemyTankController.EnemyTankView.gameObject.SetActive(true);
+            return enemyTankController;
         }
 
         protected override EnemyTankController CreateItem() => new EnemyTankController(enemyData, enemyPrefab);

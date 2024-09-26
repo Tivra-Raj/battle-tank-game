@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BattleTank.BulletShooting;
+using UnityEngine;
 
 namespace BattleTank.EnemyTank
 {
@@ -10,9 +11,11 @@ namespace BattleTank.EnemyTank
         public float attackRange;
         public int damageToInflict;
         public int scoreToGrant;
-        public LayerMask GroundLayerMask;
+        public int PatrolWaitTime;
+        public int FireRate;
         public LayerMask PlayerLayerMask;
         public EnemyTankType EnemyTankType;
+        public BulletScriptableObject BulletType;
 
         public EnemyTankController EnemyTankController { get; private set; }
 
@@ -30,8 +33,10 @@ namespace BattleTank.EnemyTank
             attackRange = enemyTankScriptableObject.attackRange;
             damageToInflict = enemyTankScriptableObject.damageToInflict;
             scoreToGrant = enemyTankScriptableObject.scoreToGrant;
-            GroundLayerMask = enemyTankScriptableObject.GroundLayerMask;
+            PatrolWaitTime = enemyTankScriptableObject .PatrolWaitTime;
+            FireRate = enemyTankScriptableObject .FireRate;
             PlayerLayerMask = enemyTankScriptableObject.PlayerLayerMask;
+            BulletType = enemyTankScriptableObject .BulletType;
         }
     }
 }

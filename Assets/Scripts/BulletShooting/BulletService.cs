@@ -5,12 +5,13 @@ namespace BattleTank.BulletShooting
 {
     public class BulletService : MonoSingletonGeneric<BulletService>
     {
-        public BulletScriptableObject CofigBullet;
-        public void CreateNewBullet(Vector3 bulletPosition, Quaternion bulletRotation, BulletScriptableObject configBulleType)
+        [SerializeField] private BulletPool bulletPool;
+        public BulletController GetBullet(Vector3 bulletPosition, Quaternion bulletRotation, BulletScriptableObject configBulletType)
         {
-            BulletScriptableObject bulletScriptableObject = configBulleType;
-            BulletModel bulletModel = new BulletModel(bulletScriptableObject);
-            BulletController bulletController = new BulletController(bulletModel, bulletScriptableObject.BulletView, bulletPosition, bulletRotation);
+            BulletController bulletController = bulletPool.GetBullet(configBulletType.BulletView, bulletPosition, bulletRotation);
+            return bulletController;
         }
+
+        public void ReturnBulletToPool(BulletController bulletToReturn) => bulletPool.ReturnItem(bulletToReturn);
     }
 }
