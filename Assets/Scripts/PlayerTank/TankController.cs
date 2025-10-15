@@ -138,7 +138,8 @@ namespace BattleTank.PlayerTank
         public IEnumerator PlayerTankDeath(int seconds)
         {
             yield return new WaitForSeconds(seconds);
-            Object.Destroy(TankView.gameObject);
+            GameObject gameObject = TankView.gameObject;
+            gameObject.SetActive(false);
             TankView.explosion.gameObject.SetActive(false);
             UnSubscribeEvents();
             GameService.GameService.Instance.GetUIService().EnableGameOverUI();

@@ -18,7 +18,7 @@ namespace BattleTank.GameService
 
         private void Update()
         {
-            if (Player.TankController.TankView.enabled == false)
+            if (Player.TankController.TankView.gameObject.activeInHierarchy == false)
             {
                 Debug.Log(" tank object is not enabled");
                 StartCoroutine(EnemyTankDeath());
