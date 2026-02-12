@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ccec4c32615ce4f9dd52967bb14bc1, type: 3}
+  m_Name: DistancTravelledAchievementSO
+  m_EditorClassIdentifier: 
+  Levels:
+  - AchievementName: First Step
+    AchievementInfo: Travel for 100 meter
+    SelectAchievementLevel: 1
+    Requirement: 100
+  - AchievementName: Wanderer
+    AchievementInfo: Travel for 500 meter
+    SelectAchievementLevel: 2
+    Requirement: 500
+  - AchievementName: Journey Man
+    AchievementInfo: Travel for 1000 meter
+    SelectAchievementLevel: 3
+    Requirement: 1000

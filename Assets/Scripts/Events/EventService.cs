@@ -1,6 +1,3 @@
-using BattleTank.Achievement;
-using UnityEngine;
-
 public class EventService
 {
     private static EventService instance;
@@ -11,17 +8,19 @@ public class EventService
             if (instance == null)
             {
                 instance = new EventService();
-                Debug.Log("Event Service is created");
             }
             return instance;
         }
     }
 
-    public EventController<float> OnDistanceTravelledEvent { get; private set; }
-
+    public EventController OnPlayerFiredBulletEvent { get; private set; }
+    public EventController OnPlayerKilledEnemiesEvent { get; private set; }
+    public EventController OnPlayerTravelledDistanceEvent { get; private set; }
+    
     public EventService()
     {
-        OnDistanceTravelledEvent = new EventController<float>();
-        Debug.Log("on Distance Event ");
+        OnPlayerFiredBulletEvent = new EventController();
+        OnPlayerKilledEnemiesEvent = new EventController();
+        OnPlayerTravelledDistanceEvent = new EventController();
     }
 }

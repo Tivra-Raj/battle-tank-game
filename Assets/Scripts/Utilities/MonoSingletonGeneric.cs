@@ -12,7 +12,7 @@ namespace BattleTank.Utilities
             if (instance == null)
             {
                 instance = (T)this;
-                DontDestroyOnLoad(this);
+                //DontDestroyOnLoad(this);
             }
             else
             {

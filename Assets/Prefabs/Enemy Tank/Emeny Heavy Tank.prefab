@@ -1,5 +1,133 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &116328775993135698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5534995863257138697}
+  - component: {fileID: 2127782360403763112}
+  m_Layer: 0
+  m_Name: ChasingState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5534995863257138697
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116328775993135698}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1775698822510611614}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2127782360403763112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116328775993135698}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 738c9608ec2238646848ef4956db0e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTankView: {fileID: 6297973504802001282}
+  playerInSightRange: 0
+  playerInAttackRange: 0
+--- !u!1 &353152809037507319
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1775698822510611614}
+  m_Layer: 0
+  m_Name: EnemyState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1775698822510611614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353152809037507319}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8734153633037137456}
+  - {fileID: 5534995863257138697}
+  - {fileID: 1140846992754269190}
+  m_Father: {fileID: 6491228846701735180}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5305413182637115549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1140846992754269190}
+  - component: {fileID: 8049177745291184008}
+  m_Layer: 0
+  m_Name: AttackingState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1140846992754269190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305413182637115549}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1775698822510611614}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8049177745291184008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305413182637115549}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4910d0dbb962b864dadeb9cf243b4bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTankView: {fileID: 6297973504802001282}
+  playerInSightRange: 0
+  playerInAttackRange: 0
 --- !u!1 &7373074492649974267
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,6 +159,53 @@ Transform:
   m_Father: {fileID: 6491228846701735180}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8552538557737660338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8734153633037137456}
+  - component: {fileID: 6150358923425457852}
+  m_Layer: 0
+  m_Name: PatrollingState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8734153633037137456
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8552538557737660338}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1775698822510611614}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6150358923425457852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8552538557737660338}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc53ed6d9cf356c40ac6414252184950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTankView: {fileID: 6297973504802001282}
+  playerInSightRange: 0
+  playerInAttackRange: 0
 --- !u!1001 &6491228846701606908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -126,6 +301,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6337659988963776659}
+    - targetCorrespondingSourceObject: {fileID: 400112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1775698822510611614}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd,
         type: 3}
@@ -139,18 +318,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6297973504802001282}
-    - targetCorrespondingSourceObject: {fileID: 100112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3975101719398210127}
-    - targetCorrespondingSourceObject: {fileID: 100112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2694312353908107524}
-    - targetCorrespondingSourceObject: {fileID: 100112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -2477462066115144442}
     - targetCorrespondingSourceObject: {fileID: 100112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd,
         type: 3}
       insertIndex: -1
@@ -197,7 +364,7 @@ NavMeshAgent:
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 180
-  m_StoppingDistance: 15
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -217,59 +384,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3217ae72d7a64bb43af5a0df906be8d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPatrolingState: {fileID: 3975101719398210127}
-  enemyChasingState: {fileID: 2694312353908107524}
-  enemyAttackingState: {fileID: -2477462066115144442}
-  enemyDeadState: {fileID: 4306329665371316236}
---- !u!114 &3975101719398210127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6491228846701637868}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc53ed6d9cf356c40ac6414252184950, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyTankView: {fileID: 0}
-  playerInSightRange: 0
-  playerInAttackRange: 0
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointSet: 0
-  waitTime: 0
-  startWaitTime: 2
---- !u!114 &2694312353908107524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6491228846701637868}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 738c9608ec2238646848ef4956db0e38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyTankView: {fileID: 0}
-  playerInSightRange: 0
-  playerInAttackRange: 0
---- !u!114 &-2477462066115144442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6491228846701637868}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4910d0dbb962b864dadeb9cf243b4bc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyTankView: {fileID: 0}
-  playerInSightRange: 0
-  playerInAttackRange: 0
+  enemyPatrolingState: {fileID: 6150358923425457852}
+  enemyChasingState: {fileID: 2127782360403763112}
+  enemyAttackingState: {fileID: 8049177745291184008}
+  enemyTankCurrentState: {fileID: 6150358923425457852}
+  initialState: 1
+  activeState: 0
+  turetTransform: {fileID: 6337659988963776659}
 --- !u!114 &4306329665371316236
 MonoBehaviour:
   m_ObjectHideFlags: 0

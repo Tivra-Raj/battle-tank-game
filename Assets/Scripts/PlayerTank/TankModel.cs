@@ -7,6 +7,10 @@ namespace BattleTank.PlayerTank
         public float MovementSpeed;
         public float RotationSpeed;
         public float Health;
+        public int BulletsFired;
+        public int EnemiesKilled;
+        public float DistanceTravelled = 0;
+        public float FireRate;
         public TankType TankType;
         public BulletScriptableObject BulletType;
 
@@ -23,6 +27,7 @@ namespace BattleTank.PlayerTank
             MovementSpeed = tankScriptableObject.MovementSpeed;
             RotationSpeed = tankScriptableObject.RotationSpeed;
             Health = tankScriptableObject.Health;
+            FireRate = tankScriptableObject.FireRate;
             BulletType = tankScriptableObject.BulletType;
         }
     }

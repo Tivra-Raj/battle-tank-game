@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace BattleTank.Utilities
 {
-    public class GenericObjectPool<T> : MonoSingletonGeneric<GenericObjectPool<T>>
+    public class GenericObjectPool<T> : MonoBehaviour
     {
         public List<PooledItem<T>> pooledItems = new List<PooledItem<T>>();
 
@@ -38,7 +39,11 @@ namespace BattleTank.Utilities
         public virtual void ReturnItem(T item)
         {
             PooledItem<T> pooledItem = pooledItems.Find(i => i.Item.Equals(item));
-            pooledItem.isUsed = false;
+            if (pooledItem != null)
+            {
+                pooledItem.isUsed = false;
+            }
+            
         }
 
         public class PooledItem<T>

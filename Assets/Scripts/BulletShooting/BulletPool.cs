@@ -5,21 +5,28 @@ namespace BattleTank.BulletShooting
 {
     public class BulletPool : GenericObjectPool<BulletController>
     {
+        [SerializeField] private BulletScriptableObject configBullet;
         private BulletView bulletPrefab;
-        private BulletModel bulletModel;
         private Vector3 bulletPosition;
         private Quaternion bulletRotation;
 
-        public BulletController GetBullet(BulletView bulletPrefab, BulletModel bulletModel, Vector3 bulletPosition, Quaternion bulletRotation)
+        public BulletController GetBullet(BulletView bulletPrefab, Vector3 bulletPosition, Quaternion bulletRotation)
         {
             this.bulletPrefab = bulletPrefab;
-            this.bulletModel = bulletModel;
             this.bulletPosition = bulletPosition;
             this.bulletRotation = bulletRotation;
 
-            return GetItem();
+            BulletController bulletController = GetItem();
+            bulletController.SetPosition(bulletPosition, bulletRotation);
+            bulletController.BulletView.gameObject.SetActive(true);
+            return bulletController;
         }
 
-        protected override BulletController CreateItem() => new BulletController(bulletModel, bulletPrefab, bulletPosition, bulletRotation);
+        protected override BulletController CreateItem()
+        {
+            BulletModel bulletModel = new BulletModel(configBullet);
+            BulletController bulletController= new BulletController(bulletModel, bulletPrefab, bulletPosition, bulletRotation);
+            return bulletController;
+        }
     }
 }

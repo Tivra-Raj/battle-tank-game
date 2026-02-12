@@ -12,13 +12,13 @@ namespace BattleTank.GameService
         public TankService Player;
         public EnemyTankService Enemy;
 
-        [SerializeField] private UIView uiService;
+        [SerializeField] private UIService uiService;
 
-        public UIView GetUIService() => uiService;
+        public UIService GetUIService() => uiService;
 
         private void Update()
         {
-            if (Player.TankController.TankView.enabled == false)
+            if (Player.TankController.TankView.gameObject.activeInHierarchy == false)
             {
                 Debug.Log(" tank object is not enabled");
                 StartCoroutine(EnemyTankDeath());

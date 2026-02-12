@@ -17,5 +17,6 @@ MonoBehaviour:
   MovementSpeed: 3000
   RotationSpeed: 180
   Health: 100
+  FireRate: 1
   TankView: {fileID: 3439958975763871, guid: b28495956b0002945a5375e507ca472e, type: 3}
   BulletType: {fileID: 11400000, guid: d0073982ee5b5594d82feda28ce0121e, type: 2}

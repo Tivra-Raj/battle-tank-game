@@ -1,7 +1,6 @@
 using BattleTank.camera;
 using BattleTank.EnemyTank;
 using BattleTank.Interface;
-using System.Collections;
 using UnityEngine;
 
 namespace BattleTank.PlayerTank
@@ -11,9 +10,6 @@ namespace BattleTank.PlayerTank
     {
         private Rigidbody tankRigidbody;
         public TankType tankType;
-
-        private Vector3 previousPosition;
-        public float totalDistanceTravelled = 0;
 
         [SerializeField] public Transform turetTransform;
         public ParticleSystem explosion;
@@ -26,36 +22,14 @@ namespace BattleTank.PlayerTank
 
         private void Awake() => tankRigidbody = GetComponent<Rigidbody>();
 
-        void Start() => previousPosition = this.transform.position;
-
         void Update()
         {
             TankController.HadleTankInput();
-            DistanceTravelled();
-            DistanceTravelledEventTrigger(GetTotalDistanceTravelled());
         }
 
         public Rigidbody GetRigidbody() => tankRigidbody;
 
         public void TakeDamage(int damageToTake) => TankController.TakeDamage(damageToTake);
-
-        void DistanceTravelled()
-        {
-            float distance = Vector3.Distance(this.transform.position, previousPosition);
-            totalDistanceTravelled += distance;
-            previousPosition = this.transform.position;
-        }
-
-        public float GetTotalDistanceTravelled() => totalDistanceTravelled;
-
-        public void DistanceTravelledEventTrigger(float distanceTravelled)
-        {
-            if (distanceTravelled >= 100f || distanceTravelled >= 500f || distanceTravelled >= 1000f)
-            {
-                Debug.Log("Distanced travelled = " + distanceTravelled);
-                EventService.Instance.OnDistanceTravelledEvent.InvokeEvent(100f);
-            }
-        }
 
         private void OnCollisionEnter(Collision collision)
         {

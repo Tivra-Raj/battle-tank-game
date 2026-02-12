@@ -15,7 +15,7 @@ namespace BattleTank.BulletShooting
 
         private void FixedUpdate() => BulletController?.ShootBullet();
 
-        private void OnTriggerEnter(Collider collision) => BulletController?.OnBulletEnteredTrigger(collision.gameObject);
+        private void OnCollisionEnter(Collision collision) => BulletController?.OnBulletEntered(collision.gameObject);
 
         public Rigidbody GetBulletRigidbody() => bulletRigidbody;
     }
